@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+<style>
+
+tr {
+display: flex;
+}
+td button {
+width: 100%;
+}
+
+tr td {
+flex-grow: 1;
+}
+h2 {
+    color: rgb(118, 118, 209);
+    font-family:fantasy;
+}
+
+</style>
+
+</head>
+<body>
+<h2>Calculadora de Angela Hidalgo </h2>
+<table>
+  <tr>
+    <td colspan="4"><input type="text" id="visor" name="visor"></td>
+  </tr>
+  <tr>
+    <td><button onclick="muestraNumero(this);">1</button></td>
+    <td><button onclick="muestraNumero(this);">2</button></td>
+    <td><button onclick="muestraNumero(this);">3</button></td>
+    <td><button onclick="suma();">+</button></td>
+  </tr>
+  <tr>
+    <td><button onclick="muestraNumero(this);">4</button></td>
+    <td><button onclick="muestraNumero(this);">5</button></td>
+    <td><button onclick="muestraNumero(this);">6</button></td>
+    <td><button onclick="resta(this);">-</button></td>
+  </tr>
+  <tr>
+    <td><button onclick="muestraNumero(this);">7</button></td>
+    <td><button onclick="muestraNumero(this);">8</button></td>
+    <td><button onclick="muestraNumero(this);">9</button></td>
+    <td><button onclick="multiplicar(this);">*</button></td>
+  </tr>
+  <tr>
+    <td><button onclick="muestraNumero(this);">0</button></td>
+    <td><button onclick="borrar();">C</button></td>
+    <td><button onclick="muestraNumero(this);">.</button></td>
+    <td><button onclick="division();">/</button></td>
+  </tr>
+  <tr>
+
+    <td><button onclick="calcular();">=</button></td>
+
+
+  </tr>
+</table>
+
+<script>
+
+let acumulado=0;
+let operacionPendiente='+';
+
+
+function muestraNumero(botonNumero) {
+let nodoVisor=document.getElementById("visor");
+let digito=botonNumero.innerHTML;
+nodoVisor.value+=digito;
+}
+
+function borrar() {
+document.getElementById("visor").value="";
+acumulado = 0;
+operacionPendiente='+';
+}
+
+function calcular() {
+let nodoVisor = document.getElementById("visor");
+let segundoNumero = Number(nodoVisor.value);
+let operaciones = {
+"+": acumulado + segundoNumero,
+"-": acumulado - segundoNumero,
+"*": acumulado * segundoNumero,
+"/": acumulado / segundoNumero };
+
+nodoVisor.value = operaciones[operacionPendiente];
+
+acumulado = 0;
+operacionPendiente = '+';
+}
+
+
+
+
+function suma() {
+acumulado = Number(document.getElementById("visor").value);
+document.getElementById("visor").value = "";
+operacionPendiente = "+";
+}
+
+function resta() {
+acumulado = Number(document.getElementById("visor").value);
+document.getElementById("visor").value = "";
+operacionPendiente = "-";
+}
+
+function multiplicar() {
+acumulado = Number(document.getElementById("visor").value);
+document.getElementById("visor").value = "";
+operacionPendiente = "*";
+}
+
+function division() {
+acumulado = Number(document.getElementById("visor").value);
+document.getElementById("visor").value = "";
+operacionPendiente = "/";
+}
+
+function inicializa () {
+let nodoVisor=document.getElementById("visor").value='';
+acumulado=0;
+operacionPendiente='+';
+}
+
+
+</script>
+</body>
+</html>
+
+
